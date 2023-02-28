@@ -6,6 +6,8 @@ import com.example.clientsservice.services.data.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClientServiceDb implements ClientService {
     @Autowired
@@ -13,5 +15,20 @@ public class ClientServiceDb implements ClientService {
     @Override
     public Client save(Client client) {
         return clientRepository.save(client);
+    }
+
+    @Override
+    public List<Client> findAll() {
+        return null;
+    }
+
+    @Override
+    public void deleteAll() {
+
+    }
+
+    @Override
+    public List<Client> saveAll(List<Client> clients) {
+        return null;
     }
 }
