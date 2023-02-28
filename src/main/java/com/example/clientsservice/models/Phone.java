@@ -18,19 +18,12 @@ public class Phone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    //TODO fields+
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(
-            foreignKey = @ForeignKey(
-                    name = "fk_client_id"
-            )
+    @Column(unique = true, nullable = false, length = 10)
+    private String phone;
 
-    )
-
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_phoneClient_id"))
+    //@OnDelete(action = OnDeleteAction.CASCADE)
     @ToString.Exclude
-
     private Client client;
-
-
 }

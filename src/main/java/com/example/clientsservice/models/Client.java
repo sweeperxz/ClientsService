@@ -1,6 +1,5 @@
 package com.example.clientsservice.models;
 
-
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,8 +15,11 @@ import java.util.Set;
 //
 @Entity
 @Table(name = "clients")
-
 public class Client {
+    public enum Gender {
+        NONE, MALE, FEMALE
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -30,18 +32,30 @@ public class Client {
     private LocalDate birthDate;
     @Column(length = 50, nullable = false, unique = true)
     private String email;
-    @OneToOne
+    @Column(nullable = false)
+    private Gender gender;
+    @OneToOne(optional = false) // тут не уверен, создает уникальность
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_address_id"))
     @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private Address address;
-
     @OneToMany(mappedBy = "client")
-    private Set<Phone> phonesList;
+    @ToString.Exclude
+    private Set<Phone> phones;
     @ManyToMany
-
-
-    @JoinTable(name = "clients_accounts", joinColumns = @JoinColumn(table = "clients", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_clients_id")),
-            inverseJoinColumns = @JoinColumn(table = "accounts", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_accounts_id")))
+    @JoinTable(name ="clients_accounts",
+            joinColumns = @JoinColumn(
+                    table = "clients",
+            referencedColumnName = "id",
+            foreignKey =@ForeignKey(
+                    name = "fk_client_id"
+            )),
+            inverseJoinColumns =
+    @JoinColumn(table = "accounts",
+            referencedColumnName ="id",
+            foreignKey =@ForeignKey(
+                    name = "fk_account_id")
+    ))
     @ToString.Exclude
     private List<Account> accounts;
+
 }

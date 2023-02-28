@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ClientServiceDb  implements ClientService {
+public class ClientServiceDb implements ClientService {
     @Autowired
-    private ClientRepository clientRepository;
-
+    ClientRepository clientRepository;
     @Override
     public Client save(Client client) {
         return clientRepository.save(client);

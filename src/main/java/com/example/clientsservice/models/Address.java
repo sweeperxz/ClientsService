@@ -1,7 +1,7 @@
 package com.example.clientsservice.models;
-
+import com.example.clientsservice.models.address.City;
+import com.example.clientsservice.models.address.Street;
 import lombok.*;
-
 import javax.persistence.*;
 
 @NoArgsConstructor
@@ -16,29 +16,20 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    //TODO fields+
-    //область, not null
-    @Column(nullable = false)
-    private String region;
-    @Column(nullable = false)
-    //район, not null
-    private String district;
-    @Column(nullable = false)
-    //город, not null
-    private String city;
-    @Column(nullable = false)
-    //улица, not null
-    private String street;
-    @Column(nullable = false)
-    //номер дома, not null
+    @Column(length = 50, nullable = false)
     private String house;
-    @Column(nullable = false)
-    //квартира
+    @Column(length = 4)
     private String apartment;
-    @OneToOne
+    @OneToOne(mappedBy = "address")
     @ToString.Exclude
-
     private Client client;
-
+    @OneToOne
+    @JoinColumn(foreignKey =  @ForeignKey(name = "fk_city_id"))
+    @ToString.Exclude
+    private City city;
+    @OneToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_street_id"))
+    @ToString.Exclude
+    private Street street;
 
 }
