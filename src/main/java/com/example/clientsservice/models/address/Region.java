@@ -17,7 +17,7 @@ public class Region {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(length = 50, nullable = false,unique = true)
+    @Column(length = 50, nullable = false, unique = true)
     private String region;
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_country_id"))

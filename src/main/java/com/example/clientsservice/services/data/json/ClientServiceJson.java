@@ -26,7 +26,8 @@ public class ClientServiceJson implements ClientService {
     @Override
     public List<Client> findAll() {
         try (FileReader reader = new FileReader(fileName)) {
-            return gson.fromJson(reader, new TypeToken<List<Client>>() {}.getType());
+            return gson.fromJson(reader, new TypeToken<List<Client>>() {
+            }.getType());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class CityNameServiceDb implements CityNameService {
     @Autowired
     private CityNameRepository cityNameRepository;
+
     @Override
     public void saveAll(ArrayList<CityName> cityNames) {
         cityNameRepository.saveAll(cityNames);

@@ -12,6 +12,7 @@ import java.util.List;
 public class ClientServiceDb implements ClientService {
     @Autowired
     ClientRepository clientRepository;
+
     @Override
     public Client save(Client client) {
         return clientRepository.save(client);

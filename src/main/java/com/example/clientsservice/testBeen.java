@@ -1,9 +1,7 @@
 package com.example.clientsservice;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Service;
 
 //@Service
 public class testBeen {
@@ -14,7 +12,7 @@ public class testBeen {
     }
 
     @EventListener(ApplicationReadyEvent.class)
-    public void onLoad(){
+    public void onLoad() {
         System.out.println(someBeen);
     }
 }

@@ -12,8 +12,9 @@ import java.util.List;
 
 @Service
 public class CountryServiceDb implements CountryService {
-@Autowired
-private CountryRepository countryRepository;
+    @Autowired
+    private CountryRepository countryRepository;
+
     @Override
     public Country save(Country country) {
         return countryRepository.save(country);

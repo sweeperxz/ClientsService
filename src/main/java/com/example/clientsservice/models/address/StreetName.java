@@ -21,5 +21,6 @@ public class StreetName {
     private String cityName;
     @OneToMany(mappedBy = "streetName")
     @ToString.Exclude
-    private List<Street> street;;
+    private List<Street> street;
+    ;
 }

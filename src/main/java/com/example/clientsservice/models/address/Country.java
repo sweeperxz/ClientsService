@@ -19,7 +19,7 @@ public class Country {
     private Integer id;
     @Column(length = 50, nullable = false, unique = true)
     private String country;
-    @OneToMany(mappedBy =  "country")
+    @OneToMany(mappedBy = "country")
     @ToString.Exclude
     private List<Region> region;
 }

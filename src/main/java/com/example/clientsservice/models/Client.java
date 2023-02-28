@@ -16,10 +16,6 @@ import java.util.Set;
 @Entity
 @Table(name = "clients")
 public class Client {
-    public enum Gender {
-        NONE, MALE, FEMALE
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -42,20 +38,23 @@ public class Client {
     @ToString.Exclude
     private Set<Phone> phones;
     @ManyToMany
-    @JoinTable(name ="clients_accounts",
+    @JoinTable(name = "clients_accounts",
             joinColumns = @JoinColumn(
                     table = "clients",
-            referencedColumnName = "id",
-            foreignKey =@ForeignKey(
-                    name = "fk_client_id"
-            )),
+                    referencedColumnName = "id",
+                    foreignKey = @ForeignKey(
+                            name = "fk_client_id"
+                    )),
             inverseJoinColumns =
-    @JoinColumn(table = "accounts",
-            referencedColumnName ="id",
-            foreignKey =@ForeignKey(
-                    name = "fk_account_id")
-    ))
+            @JoinColumn(table = "accounts",
+                    referencedColumnName = "id",
+                    foreignKey = @ForeignKey(
+                            name = "fk_account_id")
+            ))
     @ToString.Exclude
     private List<Account> accounts;
+    public enum Gender {
+        NONE, MALE, FEMALE
+    }
 
 }

@@ -1,7 +1,9 @@
 package com.example.clientsservice.models;
+
 import com.example.clientsservice.models.address.City;
 import com.example.clientsservice.models.address.Street;
 import lombok.*;
+
 import javax.persistence.*;
 
 @NoArgsConstructor
@@ -24,7 +26,7 @@ public class Address {
     @ToString.Exclude
     private Client client;
     @OneToOne
-    @JoinColumn(foreignKey =  @ForeignKey(name = "fk_city_id"))
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_city_id"))
     @ToString.Exclude
     private City city;
     @OneToOne

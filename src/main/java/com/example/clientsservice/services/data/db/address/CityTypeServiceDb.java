@@ -9,9 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class CityTypeServiceDb implements CityTypeService{
+public class CityTypeServiceDb implements CityTypeService {
     @Autowired
     private CityTypeRepository cityTypeRepository;
+
     @Override
     public void saveAll(ArrayList<CityType> cityTypes) {
         cityTypeRepository.saveAll(cityTypes);

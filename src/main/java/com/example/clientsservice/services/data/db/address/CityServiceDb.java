@@ -19,11 +19,12 @@ public class CityServiceDb implements CityService {
     public void saveAll(ArrayList<City> cities) {
         cityRepository.saveAll(cities);
     }
+
     @Override
     public List<City> findAll() {
         City c = new City();
-       // cityRepository.findAll();
-      return cityRepository.findAll(Example.of(c));
+        // cityRepository.findAll();
+        return cityRepository.findAll(Example.of(c));
     }
 
     @Override
