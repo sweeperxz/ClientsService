@@ -1,8 +1,9 @@
 package com.example.clientsservice;
 
+
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-
+//import org.springframework.stereotype.Service;
 //@Service
 public class testBeen {
     private final SomeBeen someBeen;
@@ -12,7 +13,7 @@ public class testBeen {
     }
 
     @EventListener(ApplicationReadyEvent.class)
-    public void onLoad() {
+    public void onLoad(){
         System.out.println(someBeen);
     }
 }

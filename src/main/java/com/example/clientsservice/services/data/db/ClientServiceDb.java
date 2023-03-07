@@ -11,25 +11,36 @@ import java.util.List;
 @Service
 public class ClientServiceDb implements ClientService {
     @Autowired
-    ClientRepository clientRepository;
+    private ClientRepository clientRepository;
 
     @Override
     public Client save(Client client) {
+
         return clientRepository.save(client);
     }
 
     @Override
-    public List<Client> findAll() {
-        return null;
+    public Client findById(Integer id) {
+        return clientRepository.findById(id).orElseThrow();
     }
 
     @Override
-    public void deleteAll() {
-
+    public List<Client> findAll() {
+        return clientRepository.findAll();
     }
 
     @Override
     public List<Client> saveAll(List<Client> clients) {
-        return null;
+        return clientRepository.saveAll(clients);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        clientRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteAll() {
+        clientRepository.deleteAll();
     }
 }

@@ -1,13 +1,13 @@
 package com.example.clientsservice.services.data.db.address;
 
-import com.example.clientsservice.models.address.Country;
+import com.example.clientsservice.models.adress.Country;
 import com.example.clientsservice.repositories.address.CountryRepository;
 import com.example.clientsservice.services.data.address.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,8 +21,8 @@ public class CountryServiceDb implements CountryService {
     }
 
     @Override
-    public void saveAll(ArrayList<Country> countries) {
-        countryRepository.saveAll(countries);
+    public List<Country> saveAll(List<Country> countries) {
+        return countryRepository.saveAll(countries);
     }
 
     @Override
@@ -35,18 +35,30 @@ public class CountryServiceDb implements CountryService {
         Country con = new Country();
         con.setCountry(name);
         Example<Country> example = Example.of(con);
-        return countryRepository.findBy(example, query -> query.first()).get();
-        /*    default List<User> findByFirstNameAndAge(String firstName, int age) {
-        User user = new User();
-        user.setFirstName(firstName);
-        user.setAge(age);
-        Example<User> example = Example.of(user);
-        return findBy(example, query -> query.fetch());
-    }*/
+        return countryRepository.findBy(example, FluentQuery.FetchableFluentQuery::first).orElse(null);
+
     }
 
     @Override
     public List<Country> findAll() {
-        return countryRepository.findAll();
+        List<Country> list = countryRepository.findAll();
+        return list.size() > 0 ? list : null;
     }
+
+    @Override
+    public Country findById(int i) {
+        return countryRepository.findById(i).orElse(null);
+    }
+
+    @Override
+    public void deleteById(int i) {
+        countryRepository.deleteById(i);
+    }
+
+    @Override
+    public void deleteAll() {
+        countryRepository.deleteAll();
+    }
+
+
 }

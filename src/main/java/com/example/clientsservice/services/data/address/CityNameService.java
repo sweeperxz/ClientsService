@@ -1,11 +1,23 @@
 package com.example.clientsservice.services.data.address;
 
-import com.example.clientsservice.models.address.CityName;
+import com.example.clientsservice.models.adress.CityName;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface CityNameService {
-    void saveAll(ArrayList<CityName> cityNames);
+    List<CityName> saveAll(List<CityName> cityNames);
 
     CityName getReferenceById(int i);
+
+    CityName save(CityName cityName);
+
+    CityName findById(Integer id);
+
+    List<CityName> findAll();
+
+    CityName findByName(String cityName);
+
+    void deleteById(Integer id);
+
+    void deleteAll();
 }

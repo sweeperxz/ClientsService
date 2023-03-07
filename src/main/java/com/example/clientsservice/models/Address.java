@@ -1,16 +1,16 @@
 package com.example.clientsservice.models;
-
-import com.example.clientsservice.models.address.City;
-import com.example.clientsservice.models.address.Street;
+import com.example.clientsservice.models.adress.City;
+import com.example.clientsservice.models.adress.Street;
 import lombok.*;
-
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode
 //
 @Entity
 @Table(name = "addresses")
@@ -22,16 +22,19 @@ public class Address {
     private String house;
     @Column(length = 4)
     private String apartment;
-    @OneToOne(mappedBy = "address")
+    @OneToMany(mappedBy = "address")
     @ToString.Exclude
-    private Client client;
+    @EqualsAndHashCode.Exclude
+    private List<Client> client;
     @OneToOne
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_city_id"))
+    @JoinColumn(foreignKey =  @ForeignKey(name = "fk_city_id"))
     @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private City city;
     @OneToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_street_id"))
     @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Street street;
 
 }

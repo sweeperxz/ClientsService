@@ -1,16 +1,21 @@
 package com.example.clientsservice.services.data;
 
+import com.example.clientsservice.models.Address;
 import com.example.clientsservice.models.Client;
 
 import java.util.List;
 
-
 public interface ClientService {
+
     Client save(Client client);
+
+    Client findById(Integer id);
 
     List<Client> findAll();
 
-    void deleteAll();
-
     List<Client> saveAll(List<Client> clients);
+
+    void deleteById(Integer id);
+
+    void deleteAll();
 }
